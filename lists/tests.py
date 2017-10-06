@@ -83,7 +83,7 @@ class ListViewText(TestCase):
         correct_list = List.objects.create()
         response = self.client.get(f'/lists/{correct_list.id}/')
         """
-        response.context represents the context we're going to pass into the render function - the Django Test Client puts it on the response object for us
+        response.context represents the context we're going to pass into the render function - the Django Test Client puts it on the response object for us.
         """
         self.assertEqual(response.context['list'], correct_list)
 
