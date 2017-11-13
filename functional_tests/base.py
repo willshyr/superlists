@@ -32,6 +32,29 @@ class FunctionalTest(StaticLiveServerTestCase):
                     raise e
                 time.sleep(0.5)
 
+    def wait_for(self, fn):
+        """
+        Calls the function fn after a wait time.
 
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
+        Parameters
+        ----------
+        fn : function
+            The function to be executed after the wait.
+
+        Returns
+        -------
+        What fn returns.
+
+        """
+        start_time = time.time()
+        while True:
+            try:
+                return fn()
+            except (AssertionError, WebDriverException) as e:
+                if time.time() - start_time > MAX_WAIT:
+                    raise e
+                time.sleep(0.5)
+
+
+# if __name__ == '__main__':
+#     unittest.main(warnings='ignore')
