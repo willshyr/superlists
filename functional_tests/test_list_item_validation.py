@@ -1,16 +1,11 @@
 from .base import FunctionalTest
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import WebDriverException
 import unittest
-import time
-import os
+
 MAX_WAIT = 10  # Maximum amount of time we're prepared to wait
 
 
 class ItemValidationTest(FunctionalTest):
-
     def test_cannot_add_empty_list_items(self):
         # Edith goes to the home page and accidentally tries to submit
         # an empty list item. She hits Enter on the empty input box
