@@ -1,7 +1,7 @@
 from accounts.models import Token
 from django.shortcuts import redirect, reverse
 from django.core.mail import send_mail
-from django.contrib import messages
+from django.contrib import auth, messages
 # Create your views here.
 
 def send_login_email(request):
@@ -29,4 +29,7 @@ def send_login_email(request):
 
 
 def login(request):
+    user = auth.authenticate(uid=request.GET.get('token'))
+    if user:
+        auth.login(request, user)
     return redirect('/')
