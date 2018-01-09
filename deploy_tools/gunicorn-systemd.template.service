@@ -5,6 +5,11 @@ Description=Gunicorn server for SITENAME
 Restart=on-failure
 User=elspeth
 WorkingDirectory=/home/elspeth/sites/SITENAME/source
+
+Environment=DJANGO_DEBUG_FALSE=y
+Environment=DJANGO_SECRET_KEY="806i60u)l*r6fm=(@5&!%a9u1rhw1g3!lt4%a)qd0(!__+(ruw"
+Environment=SITENAME=superlists-staging.williamshyr.com
+
 ExecStart=/home/elspeth/sites/SITENAME/virtualenv/bin/gunicorn \
     --bind unix:/tmp/SITENAME.socket \
     superlists.wsgi:application
